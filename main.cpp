@@ -13,6 +13,15 @@
 
 #include <cstdlib>
 #include <iostream>
+#include <wiringPi.h>
+#include <time.h>
+#include <stdint.h>
+#include <stdio.h>
+
+#include "DistanceSensor.h"
+
+#define TRIG_PIN 16
+#define ECHO_PIN 15
 
 using namespace std;
 
@@ -21,7 +30,14 @@ using namespace std;
  */
 int main(int argc, char** argv) {
 
-    cout << "hello from pi 2" << endl;
+    
+    //(int trigPin, int echoPin, uint64_t offset, uint64_t openLandscapeThresshold, uint32_t burstTime ) 
+    DistanceSensor frontSonar(TRIG_PIN, ECHO_PIN, 0 , 100000);
+
+    while (1) {
+        cout << "Meters: " << frontSonar.getDistanceM() << endl;
+    }
+
 
 
     return 0;
