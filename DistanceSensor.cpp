@@ -50,10 +50,12 @@ double DistanceSensor::getDistanceM() {
     while (digitalRead(echoPin) || open > openLandscapeThresshold) {
         open++;
     }
-   // std::cout << "open " <<open << std::endl; //debug
+
     clock_gettime(CLOCK_REALTIME, &gettime_now);
     time_difference = gettime_now.tv_nsec - start_time;
-
+    if (time_difference < 0)
+        time_difference += 1000000000; //(Rolls over every 1 second)
+    std::cout << "open " << time_difference << std::endl; //debug
     distance = 0.5 * 344 * (time_difference - 500000 - offset);
     distance /= 1000000000;
     return distance;

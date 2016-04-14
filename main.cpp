@@ -32,7 +32,7 @@ int main(int argc, char** argv) {
 
     
     //(int trigPin, int echoPin, uint64_t offset, uint64_t openLandscapeThresshold, uint32_t burstTime ) 
-    DistanceSensor frontSonar(TRIG_PIN, ECHO_PIN, 0 , 100000);
+    DistanceSensor frontSonar(TRIG_PIN, ECHO_PIN, 0);
 
     while (1) {
         cout << "Meters: " << frontSonar.getDistanceM() << endl;
